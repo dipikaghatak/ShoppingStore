@@ -30,8 +30,8 @@ public class SupplierController {
 	@Autowired
 	HttpSession httpsession;
 	
-	/*@RequestMapping(name="/supplier/get/{id}", method = RequestMethod.GET)
-	public ModelAndView getSupplier(@RequestParam("id")String id)
+	/*@RequestMapping(name="/getsupplier/", method = RequestMethod.GET)
+	public ModelAndView getSupplier(@RequestParam String id)
 	{
 		
 		supplier = supplierDao.get(id);
@@ -44,14 +44,14 @@ public class SupplierController {
 @PostMapping("/supplier/save")
 	
 	
-	public ModelAndView saveSupplier(@RequestParam("Sid") String Sid,
+	public ModelAndView saveSupplier(@RequestParam("id") String id,
 			@RequestParam("name") String name,
 			@RequestParam("address") String address)
 	{System.out.println("saveSupplier method is calling");
 	{
 	
 				ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
-				supplier.setSid(Sid);
+				supplier.setId(id);
 				supplier.setName(name);
 				supplier.setAddress(address);
 		if(supplierDao.save(supplier))
@@ -89,12 +89,12 @@ public ModelAndView updateSupplier(@ModelAttribute Supplier supplier)
 }
 
 /*@GetMapping(name="/supplier/delete}")
-public ModelAndView deleteSupplier(@RequestParam String Sid)
+public ModelAndView deleteSupplier(@RequestParam String id)
 
 {
 	ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 	
-	if( supplierDao.delete(Sid)== true)
+	if( supplierDao.delete(id)== true)
 	{
 		
 		mv.addObject("SuppliersuccessMessage", "The supplier deleted successfully");
@@ -110,10 +110,10 @@ public ModelAndView deleteSupplier(@RequestParam String Sid)
 }*/
 
 @GetMapping("/supplier/edit/")
-public ModelAndView editSupplier(@RequestParam String Sid) {
+public ModelAndView editSupplier(@RequestParam String id) {
 	ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 	
-	supplier = supplierDao.get(Sid);
+	supplier = supplierDao.get(id);
 	
 	httpsession.setAttribute("selectedSupplier", supplier);
 

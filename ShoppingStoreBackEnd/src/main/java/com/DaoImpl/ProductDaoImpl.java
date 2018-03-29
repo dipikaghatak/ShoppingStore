@@ -19,7 +19,7 @@ import com.domain.Product;
 
 
 @Transactional
-@Repository("productDAO") 
+@Repository("productdao") 
 public class ProductDaoImpl implements ProductDao {
 
 	Logger log = LoggerFactory.getLogger(ProductDaoImpl.class);
@@ -36,8 +36,8 @@ public class ProductDaoImpl implements ProductDao {
 
 	public boolean update(Product product) 
 	{
-		if (product.getPid()==null)
-			return false;
+		/*if (product.getPid()==null)
+			return false;*/
 		try {
 			sessionFactory.getCurrentSession().update(product);
 			return true;

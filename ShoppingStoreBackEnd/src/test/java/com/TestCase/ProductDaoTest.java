@@ -11,9 +11,9 @@ import com.domain.Product;
 public class ProductDaoTest {
 	private static AnnotationConfigApplicationContext context;
 	@Autowired
-	private static ProductDao ProductDao;
+	private static ProductDao productdao;
 	@Autowired
-	private static Product category;
+	private static Product product;
 	@BeforeClass
 	public static void abcd()
 	{
@@ -23,19 +23,19 @@ public class ProductDaoTest {
 		
 		context.refresh();
 		
-		ProductDao = (ProductDao)context.getBean("ProductDao");
-		category = (Product)context.getBean("category");
+		productdao = (ProductDao)context.getBean("productdao");
+		product = (Product)context.getBean("product");
 	}
 	@Test
 	public void saveProductTestCase()
 	{
-		category = new Product();
-		category.setPid("Mob-001");
+		product = new Product();
+		product.setId("Mob-002");
 		
-		category.setName("Mobile");
-		category.setDescription("This is mobile category");
+		product.setName("Lenovo");
+		product.setDescription("This is mobile category");
 		
-	  boolean status = 	( ProductDao.save(category));
+	  boolean status = 	( productdao.save(product));
 	  
 	  assertEquals("save category test case", true, status);
 	}
@@ -44,10 +44,10 @@ public class ProductDaoTest {
 	@Test
 	public void updateProductTestCase()
 	{
-		category.setPid("Mob-001");
-		category.setName("MobileProduct");
-		category.setDescription("This is a new Mobile Product");
-		boolean status = ProductDao.update(category);
+		product.setId("Mob-001");
+		product.setName("MobileProduct");
+		product.setDescription("This is a new Mobile Product");
+		boolean status = productdao.update(product);
 		assertEquals("update test case", true,status );
 	}
 	
@@ -55,33 +55,33 @@ public class ProductDaoTest {
 	public void getProductSuccessTestCase()
 	{
 		
-	category=  ProductDao.get("Mob-001");
+		product=  productdao.get("Mob-001");
 	
-	assertNotNull("get category test case", category);
+	assertNotNull("get product test case", product);
 	}
 	
 	@Test
 	public void getProductFailureTestCase()
 	{
 		
-	category=  ProductDao.get("Mob-001");
+		product=  productdao.get("Mob-001");
 	
-	assertNull("get category test case", category);
+	assertNull("get product test case", product);
 	}
 	
 	@Test
 	public void deleteProductSuccessTestCase()
 	{
-	boolean status =	 ProductDao.delete("Mob-001");
-	assertEquals("delete category succss test case" , true, status);
+	boolean status =	 productdao.delete("Mob-001");
+	assertEquals("delete product success test case" , true, status);
 	
 	}
 	
 	@Test
 	public void deleteProductFailureTestCase()
 	{
-	boolean status =	ProductDao.delete("Mob-001");
-	assertEquals("delete category failure test case" , false, status);
+	boolean status =	productdao.delete("Mob-001");
+	assertEquals("delete product failure test case" , false, status);
 	
 	}
 	
@@ -89,7 +89,7 @@ public class ProductDaoTest {
 	@Test
 	public void getAllProductsTestCase()
 	{
-	List<Product>	categorys = ProductDao.list();
+	List<Product>	categorys = productdao.list();
 	
 	assertEquals("get all usres " , 3, categorys.size() );
 	

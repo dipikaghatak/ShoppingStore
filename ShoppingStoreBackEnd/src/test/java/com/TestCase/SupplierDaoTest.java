@@ -11,7 +11,7 @@ import com.domain.Supplier;
 public class SupplierDaoTest {
 	private static AnnotationConfigApplicationContext context;
 	@Autowired
-	private static SupplierDao supplierDao;
+	private static SupplierDao supplierdao;
 	@Autowired
 	private static Supplier supplier;
 	@BeforeClass
@@ -23,19 +23,19 @@ public class SupplierDaoTest {
 		
 		context.refresh();
 		
-		supplierDao = (SupplierDao)context.getBean("supplierDao");
+		supplierdao = (SupplierDao)context.getBean("supplierdao");
 		supplier = (Supplier)context.getBean("supplier");
 	}
 	@Test
 	public void saveSupplierTestCase()
 	{
 		supplier = new Supplier();
-		supplier.setSid("SUP-001");
+		supplier.setId("SUP-001");
 		
 		supplier.setName("BlueDart");
 		supplier.setAddress("NH33, Chennai");
 		
-	  boolean status = 	supplierDao.save(supplier);
+	  boolean status = 	supplierdao.save(supplier);
 	  
 	  assertEquals("save supplier test case", true, status);
 	}
@@ -45,12 +45,12 @@ public class SupplierDaoTest {
 	public void updateSupplierTestCase()
 	{
 		supplier = new Supplier();
-		supplier.setSid("SUP-001");
+		supplier.setId("SUP-001");
 		
 		supplier.setName("BigC");
 		supplier.setAddress("Warli, Mumbai");
 		
-		boolean status = supplierDao.update(supplier);
+		boolean status = supplierdao.update(supplier);
 		assertEquals("update test case", true,status );
 	}
 	
@@ -58,7 +58,7 @@ public class SupplierDaoTest {
 	public void getSupplierSuccessTestCase()
 	{
 		
-	supplier= supplierDao.get("Sup-001");
+	supplier= supplierdao.get("Sup-001");
 	
 	assertNotNull("get supplier test case", supplier);
 	}
@@ -67,7 +67,7 @@ public class SupplierDaoTest {
 	public void getSupplierFailureTestCase()
 	{
 		
-	supplier= supplierDao.get("Sup-001");
+	supplier= supplierdao.get("Sup-001");
 	
 	assertNull("get supplier test case", supplier);
 	}
@@ -75,7 +75,7 @@ public class SupplierDaoTest {
 	@Test
 	public void deleteSupplierSuccessTestCase()
 	{
-	boolean status =	supplierDao.delete("Sup-001");
+	boolean status =	supplierdao.delete("Sup-001");
 	assertEquals("delete supplier succss test case" , true, status);
 	
 	}
@@ -83,7 +83,7 @@ public class SupplierDaoTest {
 	@Test
 	public void deleteSupplierFailureTestCase()
 	{
-	boolean status =	supplierDao.delete("arpith@gmail.com");
+	boolean status =	supplierdao.delete("arpith@gmail.com");
 	assertEquals("delete supplier failure test case" , false, status);
 	
 	}
@@ -92,7 +92,7 @@ public class SupplierDaoTest {
 	@Test
 	public void getAllSuppliersTestCase()
 	{
-	List<Supplier>	suppliers = supplierDao.list();
+	List<Supplier>	suppliers = supplierdao.list();
 	
 	assertEquals("get all users " , 3, suppliers.size() );
 	

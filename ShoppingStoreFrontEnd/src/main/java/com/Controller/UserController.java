@@ -15,12 +15,12 @@ import com.domain.User;
 public class UserController {
 
 	@Autowired
-	private UserDao userDao;
+	private UserDao userdao;
 	@Autowired
 	private User user;
 
 	@Autowired
-	HttpSession httpSession;
+	HttpSession httpsession;
 	
 	
 	@PostMapping("validate")
@@ -28,7 +28,7 @@ public class UserController {
 	{
 		ModelAndView mv = new ModelAndView("home");
 		
-		user= userDao.validate(username, password);
+		user= userdao.validate(username, password);
 		
 		
 		if (user == null)
@@ -39,11 +39,11 @@ public class UserController {
 		else
 		{
 			//mv.addObject("welcomeMessage","Welcome Mr/Ms:"+ user.getName());
-			httpSession.setAttribute("welcomeMessage", "Welcome Mr./Ms " + user.getName());
-			
+			httpsession.setAttribute("welcomeMessage", "Welcome Mr./Ms " + user.getName());
+			httpsession.setAttribute("loggedInUserId", user.getEmailD());
 			if(user.getRole()=='A')
 			{
-				httpSession.setAttribute("isAdmin", true);
+				httpsession.setAttribute("isAdmin", true);
 			}
 			
 		}
@@ -67,7 +67,7 @@ public class UserController {
 	user.setMobile(Mobile);
 	System.out.println("value"+ user.getMobile()+user.getName()+user.getPwd()+user.getRole()+user.getRegisterDate());
 
-if(userDao.save(user)==false)
+if(userdao.save(user)==false)
 {
  mv.addObject("registratonFailed", "Failed");	
 }

@@ -16,7 +16,7 @@ import com.domain.User;
 
 
 @Transactional
-@Repository("UserDAO")
+@Repository("userdao")
 public class UserDaoImpl implements UserDao{
 	
 	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
@@ -47,8 +47,8 @@ public class UserDaoImpl implements UserDao{
 	public boolean update(User user) 
 	{
 		log.debug("starting of the update method");
-		if (user.getEmailD()==null)
-			return false;
+		/*if (user.getEmailD()==null)
+			return false;*/
 		try {
 			sessionFactory.getCurrentSession().update(user);
 			log.debug("ending of the update method");

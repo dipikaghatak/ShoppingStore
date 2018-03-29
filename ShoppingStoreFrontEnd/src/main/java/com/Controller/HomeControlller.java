@@ -20,7 +20,7 @@ public class HomeControlller {
 	private Category category;
 	
 	@Autowired
-	private HttpSession httpSession;
+	private HttpSession httpsession;
 	@GetMapping("/")
 	public ModelAndView home() {
 
@@ -30,7 +30,7 @@ public class HomeControlller {
 		List<Category> categories = categoryDao.list();
 
 		
-		httpSession.setAttribute("categories", categories);
+		httpsession.setAttribute("categories", categories);
 		return mv;
 	}
 	
@@ -48,12 +48,12 @@ public ModelAndView logout()
 	//at the time of login, we add user id in http session
 	//at the time of logout, we need o remove user id from httpsession
 	ModelAndView mv = new ModelAndView("home");
-	httpSession.invalidate();
+	httpsession.invalidate();
 	return mv.addObject("logoutMessage", "You are successfully logged out");
 
 }
 	@GetMapping("/register")
-	public ModelAndView registration() {
+	public ModelAndView register() {
 
 		ModelAndView mv = new ModelAndView("home");
 		mv.addObject("isUserClickedRegister", true);

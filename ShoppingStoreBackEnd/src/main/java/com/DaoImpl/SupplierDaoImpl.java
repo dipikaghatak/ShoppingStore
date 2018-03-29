@@ -17,7 +17,7 @@ import com.domain.Supplier;
 
 
 @Transactional
-@Repository("supplierDAO")
+@Repository("supplierdao")
 public class SupplierDaoImpl implements SupplierDao {
 
 	Logger log = LoggerFactory.getLogger(SupplierDaoImpl.class);
@@ -35,8 +35,8 @@ public class SupplierDaoImpl implements SupplierDao {
 
 	public boolean update(Supplier supplier) 
 	{
-		if (supplier.getSid()==null)
-			return false;
+		/*if (supplier.getSid()==null)
+			return false;*/
 		try {
 			sessionFactory.getCurrentSession().update(supplier);
 			return true;

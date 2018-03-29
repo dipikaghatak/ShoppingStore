@@ -28,7 +28,7 @@ public interface UserDao {
 
 
 	
-		public    User      validate(String emailID, String password);
+		public User validate(String emailID, String password);
 		
 		
 }

@@ -8,8 +8,10 @@
 </head>
 <body>
 	${productSuccessMessage} ${productErrorMessage}
+	${uploadMessage}
+	
 	<!-- create 3 text fields -->
-	<form action="product/save/" method="post">
+	<form action="product/save/" method="post" enctype="multipart/form-data">
 		<table>
 			<tr>
 				<td>ID</td>
@@ -55,7 +57,13 @@
 
 			</tr>
 
+<tr>
+<td>
+Product Image: <input type= "file" name = "file">
 
+
+</td>
+</tr>
 			<tr>
 				<td>Select Supplier</td>
 				<td><select name="supplierID">

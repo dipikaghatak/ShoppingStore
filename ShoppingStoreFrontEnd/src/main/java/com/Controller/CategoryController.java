@@ -46,12 +46,12 @@ public class CategoryController {
 	@PostMapping("/category/save")
 	
 	
-	public ModelAndView saveCategory(@RequestParam ("Cid")String Cid,
+	public ModelAndView saveCategory(@RequestParam ("id")String id,
 			@RequestParam("name")String name,
 			@RequestParam ("description") String description)
 	{
 		ModelAndView mv = new ModelAndView("rediret:/managecategories");
-		category.setCid(Cid);
+		category.setId(id);
 		category.setName(name);
 		category.setDescription(description);
 		

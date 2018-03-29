@@ -21,7 +21,7 @@ public class UserDaoTest
 {
 	private static AnnotationConfigApplicationContext context;
 	@Autowired
-	private static UserDao userDao;
+	private static UserDao userdao;
 	@Autowired
 	private static User user;
 	@BeforeClass
@@ -33,19 +33,19 @@ public class UserDaoTest
 		
 		context.refresh();
 	
-		userDao = (UserDao)context.getBean("userDao");
+		userdao = (UserDao)context.getBean("userdao");
 		user = (User)context.getBean("user");
 	}
 	@Test
 	public void saveUserTestCase()
 	{
 		user = new User();
-		user.setEmailID("dipika@gmail.com");
-		user.setMobile("666666666");
-		user.setName("dipika Ghatak");
-		user.setPwd("dipika@123");
+		user.setEmailID("arijit@gmail.com");
+		user.setMobile("9999999");
+		user.setName("arijit acharya");
+		user.setPwd("ariit@123");
 		
-	  boolean status = 	userDao.save(user);
+	  boolean status = 	userdao.save(user);
 	  
 	  assertEquals("save user test case", true, status);
 	}
@@ -54,9 +54,9 @@ public class UserDaoTest
 	@Test
 	public void updateUserTestCase()
 	{
-		user.setEmailID("jas@gmail.com");
-		user.setMobile("888888888");
-		boolean status = userDao.update(user);
+		user.setEmailID("jaskaran@gmail.com");
+		user.setMobile("888888");
+		boolean status = userdao.update(user);
 		assertEquals("update test case", true,status );
 	}
 	
@@ -64,7 +64,7 @@ public class UserDaoTest
 	public void getUserSuccessTestCase()
 	{
 		
-	user= userDao.get("karan@gmail.com");
+	user= userdao.get("karan@gmail.com");
 	
 	assertNotNull("get user test case", user);
 	}
@@ -73,7 +73,7 @@ public class UserDaoTest
 	public void getUserFailureTestCase()
 	{
 		
-	user= userDao.get("jaya@gmail.com");
+	user= userdao.get("jaya@gmail.com");
 	
 	assertNull("get user test case", user);
 	}
@@ -81,7 +81,7 @@ public class UserDaoTest
 	@Test
 	public void deleteUserSuccessTestCase()
 	{
-	boolean status =	userDao.delete("jaskaran1@gmail.com");
+	boolean status =	userdao.delete("jaskaran1@gmail.com");
 	assertEquals("delete user succss test case" , true, status);
 	
 	}
@@ -89,7 +89,7 @@ public class UserDaoTest
 	@Test
 	public void deleteUserFailureTestCase()
 	{
-	boolean status =	userDao.delete("arpith@gmail.com");
+	boolean status =	userdao.delete("arpith@gmail.com");
 	assertEquals("delete user failure test case" , false, status);
 	
 	}
@@ -98,7 +98,7 @@ public class UserDaoTest
 	@Test
 	public void getAllUsersTestCase()
 	{
-	List<User>	users = userDao.list();
+	List<User>	users = userdao.list();
 	
 	assertEquals("get all users " , 3, users.size() );
 	
@@ -106,7 +106,7 @@ public class UserDaoTest
 	@Test
 	public void validateCredentailsTestCase()
 	{
-	user = 	userDao.validate("jaskaran@gmail.com", "jas@1234");
+	user = 	userdao.validate("jaskaran@gmail.com", "jas@1234");
 	assertNotNull("Validate test case",user );
 	
 	}

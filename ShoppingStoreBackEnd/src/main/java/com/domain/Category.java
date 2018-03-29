@@ -14,18 +14,20 @@ import org.springframework.stereotype.Controller;
 @Entity
 public class Category {
 	@Id
-	private String Cid;
+	private String id;
 	private String name;
 	private String description;
+	
 	@OneToMany(mappedBy="category", fetch = FetchType.EAGER)
 	private Set<Product> products;
 	
 	
-	public String getCid() {
-		return Cid;
+	
+	public String getId() {
+		return id;
 	}
-	public void setCid(String cid) {
-		Cid = cid;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;

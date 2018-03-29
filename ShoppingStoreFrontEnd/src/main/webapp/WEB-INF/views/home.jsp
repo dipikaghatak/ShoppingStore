@@ -13,13 +13,14 @@ ${successMessage}
 ${errorMessage}
 	<center>
 		<h2>Welcome to shopping cart</h2>
+		${logoutMessage}
 	</center>
 	
 	${error}
 	<br>
 	<a href="login"> Existing user</a>
 	<a href="register"> New User</a>
-	<a href="logout"> New User</a>
+	<a href="logout"> LogOut</a>
 	<hr color="blue" size="5">
 	
 	<jsp:include page="product_menu.jsp"></jsp:include>

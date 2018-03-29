@@ -5,31 +5,32 @@ import javax.transaction.Transactional;
 
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.Dao.CategoryDao;
-import com.domain.Category;
+import com.Dao.CartDao;
+import com.domain.Cart;
 
 
 @Transactional
-@Repository("categorydao") 
-public class CategoryDaoImpl implements CategoryDao {
+@Repository("cartdao") 
+public class CartDaoImpl implements CartDao {
 	
 	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
 	@Autowired
 	
 	private SessionFactory sessionFactory;
 	@Autowired
-	private Category category;
-	public boolean save(Category category) 
+	private Cart cart;
+	public boolean save(Cart cart) 
 	{
 		log.debug("starting of the save method");
 	try{
 
-		sessionFactory.getCurrentSession().saveOrUpdate(category);
+		sessionFactory.getCurrentSession().saveOrUpdate(cart);
 		return true;
 	} catch (HibernateException e) {
 		// TODO Auto-generated catch block
@@ -39,13 +40,12 @@ public class CategoryDaoImpl implements CategoryDao {
 		
 	}
 
-	public boolean update(Category category) 
+	public boolean update(Cart cart) 
 	{
 		log.debug("starting of the update method");
-		//if (category.getCid()==null)
-			//return false;
+		
 		try {
-			sessionFactory.getCurrentSession().update(category);
+			sessionFactory.getCurrentSession().update(cart);
 			log.debug("ending of the update method");
 			return true;
 		}
@@ -58,10 +58,10 @@ public class CategoryDaoImpl implements CategoryDao {
 		
 	}
 
-	public Category get(String id) 
+	public Cart get(String id) 
 	{
 		log.debug("starting of the get method");
-		return sessionFactory.getCurrentSession().get(Category.class, id);
+		return sessionFactory.getCurrentSession().get(Cart.class, id);
 		
 	}
 
@@ -70,12 +70,12 @@ public class CategoryDaoImpl implements CategoryDao {
 		log.debug("starting of the delete method");
 		try 
 		{
-			category =get(emailID);
-			if(category== null)
+			cart =get(emailID);
+			if(cart== null)
 			{
 			return false;
 			}
-			sessionFactory.getCurrentSession().delete(category);
+			sessionFactory.getCurrentSession().delete(cart);
 			log.debug("ending of the delete method");
 			return true;
 		}
@@ -88,9 +88,9 @@ public class CategoryDaoImpl implements CategoryDao {
 		}	
 	}
 
-	public List<Category> list() {
+	public List<Cart> list(String emailID) {
 		log.debug("starting of the list method");
-		return sessionFactory.getCurrentSession().createQuery("from Category").list();
-		
+		//select * from cart whrer emailid= ?
+		return sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.eq("emailID", "emailID")).list();
 	}
 }

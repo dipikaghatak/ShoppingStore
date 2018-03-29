@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.Dao.CategoryDao;
 import com.Dao.ProductDao;
 import com.Dao.SupplierDao;
+import com.Util.FileUtil;
 import com.domain.Category;
 import com.domain.Product;
 import com.domain.Supplier;
@@ -35,12 +37,11 @@ public class ProductController {
 	@Autowired
 	private CategoryDao categorydao;
 	
-@Autowired
-HttpSession httpsession;
-	
 	@Autowired
 	private SupplierDao supplierDao;
 	
+	@Autowired
+	HttpSession httpsession;
 	
 	
 
@@ -59,16 +60,17 @@ HttpSession httpsession;
 @PostMapping("/product/save")
 	
 
-	public ModelAndView saveProduct(@RequestParam("Pid") String Pid,
+	public ModelAndView saveProduct(@RequestParam("id") String id,
 									@RequestParam("name")String name,
 									@RequestParam("description") String description,
 									@RequestParam("price") String price,
 									@RequestParam("categoryID") String categoryID,
-									@RequestParam("supplierID") String supplierID)
+									@RequestParam("supplierID") String supplierID,
+									@RequestParam("file") MultipartFile file)
 	{
 	
 				ModelAndView mv = new ModelAndView("redirect:/manageproducts");
-				product.setPid(Pid);;
+				product.setId(id);
 				product.setName(name);
 				product.setDescription(description);
 				
@@ -83,6 +85,16 @@ HttpSession httpsession;
 		{
 	
 			mv.addObject("productsuccessMessage", "The product saved successfully");
+			//call upload image method
+			if(FileUtil.fileCopyNIO(file,id + ".PNG"))
+			{
+				mv.addObject("uploadMessage", "product image successfully uploaded");
+			}
+			else
+			{
+				mv.addObject("uploadMessage", "could not upload ");
+				
+			}
 		}
 		else
 		{
@@ -114,12 +126,12 @@ public ModelAndView updateProduct(@ModelAttribute Product product)
 }
 
 /*@GetMapping(name="/product/delete")
-public ModelAndView deleteProduct(@RequestParam String Pid) {
-System.out.println("going to delete product : " + Pid);
+public ModelAndView deleteProduct(@RequestParam String id) {
+System.out.println("going to delete product : " + id);
 {
 	ModelAndView mv = new ModelAndView("redirect:/manageproducts");
 	
-	if( productDao.delete(Pid)== true)
+	if( productDao.delete(id)== true)
 	{
 		
 		mv.addObject("successMessage", "The product deleted successfully");
@@ -131,19 +143,20 @@ System.out.println("going to delete product : " + Pid);
 	}
 	return mv;
 }
+}*/
 	
-	/*@GetMapping ("/product/edit")
-	public ModelAndView editProduct(@RequestParam String Pid)
+	@GetMapping ("/product/edit")
+	public ModelAndView editProduct(@RequestParam String id)
 	{
 		ModelAndView mv = new ModelAndView("redirect:/manageproducts");
 		// based on product id fetch product details.
-		product = productDao.get(Pid);
+		product = productDao.get(id);
 		// mv.addObject("selectedProduct", product);
 		httpsession.setAttribute("selectedProduct", product);
 	
 		return mv;
 	}
-	*/
+	
 
 @GetMapping("/products")
 public ModelAndView getAllProducts()

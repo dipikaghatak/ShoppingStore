@@ -37,7 +37,7 @@ public class AdminController {
 	public ModelAndView adminClickedCategories()
 	{
 		ModelAndView mv = new ModelAndView("home");
-		 mv.addObject("isAdminClickedCategories", true);
+		 mv.addObject("isAdminClickedManageCategories", true);
 		List <Category> categories = categorydao.list();
 		httpsession.setAttribute("categories", categories);
 		return mv;
@@ -46,7 +46,7 @@ public class AdminController {
 	public ModelAndView adminClickedSuppliers()
 	{
 		ModelAndView mv = new ModelAndView("home");
-		 mv.addObject("isAdminClickedSuppliers", true);
+		 mv.addObject("isAdminClickedManageSuppliers", true);
 		List <Supplier> suppliers = supplierdao.list();
 		httpsession.setAttribute("suppliers", suppliers);
 		return mv;
@@ -56,7 +56,7 @@ public class AdminController {
 	public ModelAndView adminClickedProducts()
 	{
 		ModelAndView mv = new ModelAndView("home");
-		mv.addObject("isAdminClickedProducts", true);
+		mv.addObject("isAdminClickedManageProducts", true);
 		List <Category> categories = categorydao.list();
 		List <Supplier> suppliers = supplierdao.list();
 		List <Product> products = productdao.list();

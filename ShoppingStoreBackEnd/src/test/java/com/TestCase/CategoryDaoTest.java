@@ -12,7 +12,7 @@ import com.domain.Category;
 public class CategoryDaoTest {
 	private static AnnotationConfigApplicationContext context;
 	@Autowired
-	private static CategoryDao CategoryDao;
+	private static CategoryDao categorydao;
 	@Autowired
 	private static Category category;
 	@BeforeClass
@@ -24,19 +24,19 @@ public class CategoryDaoTest {
 		
 		context.refresh();
 			
-		CategoryDao = (CategoryDao)context.getBean("CategoryDao");
+		categorydao = (CategoryDao)context.getBean("categorydao");
 		category = (Category)context.getBean("category");
 	}
 	@Test
 	public void saveCategoryTestCase()
 	{
 		category = new Category();
-		category.setCid("Mob-001");
+		category.setId("Mob-001");
 		
 		category.setName("Mobile");
 		category.setDescription("This is mobile category");
 		
-	  boolean status = 	( CategoryDao.save(category));
+	  boolean status = 	( categorydao.save(category));
 	  
 	  assertEquals("save category test case", true, status);
 	}
@@ -45,10 +45,10 @@ public class CategoryDaoTest {
 	@Test
 	public void updateCategoryTestCase()
 	{
-		category.setCid("Mob-001");
+		category.setId("Mob-001");
 		category.setName("MobileCategory");
 		category.setDescription("This is a new Mobile Category");
-		boolean status = CategoryDao.update(category);
+		boolean status = categorydao.update(category);
 		assertEquals("update test case", true,status );
 	}
 	
@@ -56,7 +56,7 @@ public class CategoryDaoTest {
 	public void getCategorySuccessTestCase()
 	{
 		
-	category=  CategoryDao.get("Mob-001");
+	category=  categorydao.get("Mob-001");
 	
 	assertNotNull("get category test case", category);
 	}
@@ -65,7 +65,7 @@ public class CategoryDaoTest {
 	public void getCategoryFailureTestCase()
 	{
 		
-	category=  CategoryDao.get("Mob-001");
+	category=  categorydao.get("Mob-001");
 	
 	assertNull("get category test case", category);
 	}
@@ -73,7 +73,7 @@ public class CategoryDaoTest {
 	@Test
 	public void deleteCategorySuccessTestCase()
 	{
-	boolean status =	 CategoryDao.delete("Mob-001");
+	boolean status =	 categorydao.delete("Mob-001");
 	assertEquals("delete category succss test case" , true, status);
 	
 	}
@@ -81,7 +81,7 @@ public class CategoryDaoTest {
 	@Test
 	public void deleteCategoryFailureTestCase()
 	{
-	boolean status =	CategoryDao.delete("Mob-001");
+	boolean status =	categorydao.delete("Mob-001");
 	assertEquals("delete category failure test case" , false, status);
 	
 	}
@@ -90,7 +90,7 @@ public class CategoryDaoTest {
 	@Test
 	public void getAllCategorysTestCase()
 	{
-	List<Category>	categorys = CategoryDao.list();
+	List<Category>	categorys = categorydao.list();
 	
 	assertEquals("get all usres " , 3, categorys.size() );
 	

@@ -16,7 +16,7 @@ import org.springframework.stereotype.Component;
 @Entity
 public class Supplier {
 	@Id
-	private String Sid;
+	private String id;
 	private String name;
 	private String address;
 	@OneToMany(mappedBy="supplier", fetch = FetchType.EAGER)
@@ -29,11 +29,12 @@ public class Supplier {
 		this.products = products;
 	}
 	
-	public String getSid() {
-		return Sid;
+	
+	public String getId() {
+		return id;
 	}
-	public void setSid(String sid) {
-		Sid = sid;
+	public void setId(String id) {
+		this.id = id;
 	}
 	public String getName() {
 		return name;
