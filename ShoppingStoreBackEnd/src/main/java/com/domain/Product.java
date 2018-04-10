@@ -18,16 +18,16 @@ public class Product {
 	private String name;
 	private String description;
 	private String categoryId;
-	private String supplierID;
+	private String supplierId;
 	private int price;
 	@ManyToOne
-	@JoinColumn(name="categoryID", updatable = false, insertable= false, nullable= false)
+	@JoinColumn(name="categoryId", updatable = false, insertable= false, nullable= false)
 	
 	
 	
 	private Category category;
 	@ManyToOne
-	@JoinColumn(name= "SupplierID", nullable= false, updatable= false, insertable = false)
+	@JoinColumn(name= "SupplierId", nullable= false, updatable= false, insertable = false)
 	private Supplier supplier;
 	
 
@@ -68,11 +68,11 @@ public class Product {
 	public void setCategoryId(String categoryId) {
 		this.categoryId = categoryId;
 	}
-	public String getSupplierID() {
-		return supplierID;
+	public String getSupplierId() {
+		return supplierId;
 	}
-	public void setSupplierID(String supplierID) {
-		this.supplierID = supplierID;
+	public void setSupplierID(String supplierId) {
+		this.supplierId = supplierId;
 	}
 	public int getPrice() {
 		return price;

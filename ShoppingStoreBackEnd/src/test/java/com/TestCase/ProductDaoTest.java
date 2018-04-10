@@ -91,7 +91,7 @@ public class ProductDaoTest {
 	{
 	List<Product>	categorys = productdao.list();
 	
-	assertEquals("get all usres " , 3, categorys.size() );
+	assertEquals("get all users " , 3, categorys.size() );
 	
 	}
 }

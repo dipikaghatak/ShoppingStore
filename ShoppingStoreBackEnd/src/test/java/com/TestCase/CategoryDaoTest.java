@@ -31,10 +31,10 @@ public class CategoryDaoTest {
 	public void saveCategoryTestCase()
 	{
 		category = new Category();
-		category.setId("Mob-001");
+		category.setId("Lenovo K5");
 		
 		category.setName("Mobile");
-		category.setDescription("This is mobile category");
+		category.setDescription("This is Mobile category");
 		
 	  boolean status = 	( categorydao.save(category));
 	  
@@ -45,8 +45,9 @@ public class CategoryDaoTest {
 	@Test
 	public void updateCategoryTestCase()
 	{
-		category.setId("Mob-001");
-		category.setName("MobileCategory");
+		//category= new Category();
+		category.setId("Lenovo K5");
+		category.setName("Mobile");
 		category.setDescription("This is a new Mobile Category");
 		boolean status = categorydao.update(category);
 		assertEquals("update test case", true,status );
@@ -74,7 +75,7 @@ public class CategoryDaoTest {
 	public void deleteCategorySuccessTestCase()
 	{
 	boolean status =	 categorydao.delete("Mob-001");
-	assertEquals("delete category succss test case" , true, status);
+	assertEquals("delete category success test case" , true, status);
 	
 	}
 	
@@ -92,7 +93,7 @@ public class CategoryDaoTest {
 	{
 	List<Category>	categorys = categorydao.list();
 	
-	assertEquals("get all usres " , 3, categorys.size() );
+	assertEquals("get all users " , 3, categorys.size() );
 	
 	}
 

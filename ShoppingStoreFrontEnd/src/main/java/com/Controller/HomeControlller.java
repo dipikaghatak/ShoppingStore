@@ -1,7 +1,9 @@
 package com.Controller;
 
+import java.io.File;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,22 +17,31 @@ import com.domain.Category;
 @Controller
 public class HomeControlller {
 	@Autowired
-	private CategoryDao categoryDao;
+	private CategoryDao categorydao;
 	@Autowired
 	private Category category;
 	
 	@Autowired
 	private HttpSession httpsession;
+	private static String imageDirectory = "D:\\dipika workspace\\Shopping store\\ShoppingStoreFrontEnd\\src\\main\\webapp\\resources\\images";
 	@GetMapping("/")
-	public ModelAndView home() {
+	public ModelAndView home(HttpServletRequest request) {
 
 		ModelAndView mv = new ModelAndView("home");
 	
 
-		List<Category> categories = categoryDao.list();
+		List<Category> categories = categorydao.list();
 
 		
 		httpsession.setAttribute("categories", categories);
+		httpsession.setAttribute("imageDirectory", imageDirectory);
+		String root =request.getContextPath();
+	    String imageFolder =  root + File.separator +"src" + File.separator + 
+	    		"main" +File.separator +
+	    		"webapp"+File.separator +
+	    		"resources"+File.separator;	
+	    httpsession.setAttribute("imageFolder", imageFolder);
+	    //httpSession.getServletContext().getgetContextPath();
 		return mv;
 	}
 	
@@ -49,6 +60,10 @@ public ModelAndView logout()
 	//at the time of logout, we need o remove user id from httpsession
 	ModelAndView mv = new ModelAndView("home");
 	httpsession.invalidate();
+	/*httpsession.removeAttribute("loggedInUserId");
+
+	httpsession.removeAttribute("isLoggedIn");
+	httpsession.removeAttribute("isAdmin");*/
 	return mv.addObject("logoutMessage", "You are successfully logged out");
 
 }

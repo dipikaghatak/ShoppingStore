@@ -19,12 +19,17 @@ import com.domain.Cart;
 @Repository("cartdao") 
 public class CartDaoImpl implements CartDao {
 	
-	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(CartDaoImpl.class);
 	@Autowired
 	
 	private SessionFactory sessionFactory;
 	@Autowired
 	private Cart cart;
+	
+	
+	
+	
+	
 	public boolean save(Cart cart) 
 	{
 		log.debug("starting of the save method");
@@ -92,5 +97,23 @@ public class CartDaoImpl implements CartDao {
 		log.debug("starting of the list method");
 		//select * from cart whrer emailid= ?
 		return sessionFactory.getCurrentSession().createCriteria(Cart.class).add(Restrictions.eq("emailID", "emailID")).list();
+	}
+
+	@Override
+	public boolean update(String emailID) {
+		log.debug("starting of  method update");
+		log.debug("Going to place order of" + emailID);
+		String hql = "update Cart set status = 'O' where emailid = '" + emailID + "'";
+		log.info("the given query :" + hql);
+		try
+		{sessionFactory.getCurrentSession().createQuery(hql).executeUpdate();
+		log.debug("Ending of the method update");
+		return true;
+		}
+		catch (Exception e) {
+			return false;
+		}
+		
+		
 	}
 }

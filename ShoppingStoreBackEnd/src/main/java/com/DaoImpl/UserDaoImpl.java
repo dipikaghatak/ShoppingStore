@@ -47,7 +47,7 @@ public class UserDaoImpl implements UserDao{
 	public boolean update(User user) 
 	{
 		log.debug("starting of the update method");
-		/*if (user.getEmailD()==null)
+		/*if (user.getEmailID()==null)
 			return false;*/
 		try {
 			sessionFactory.getCurrentSession().update(user);
@@ -89,6 +89,7 @@ public class UserDaoImpl implements UserDao{
 		{
 			
 			e.printStackTrace();
+			log.error("error ocurred in delete method"+ e.getMessage());;
 			return false;
 		}	
 	
@@ -100,7 +101,7 @@ public class UserDaoImpl implements UserDao{
 		}
 
 		public User validate(String emailID, String password) {
-			//select * from usre where emailID = 'jaskaran1@gmail.com' and password = 'jas123'
+			//select * from usre where emailID = 'dipika@gmail.com' and password = 'dipika@123'
 			log.debug("starting of the validate method");
 			log.info("users"+emailID+"trying to login");
 		user = (User)sessionFactory.getCurrentSession().

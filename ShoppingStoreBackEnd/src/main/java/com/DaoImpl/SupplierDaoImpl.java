@@ -20,7 +20,7 @@ import com.domain.Supplier;
 @Repository("supplierdao")
 public class SupplierDaoImpl implements SupplierDao {
 
-	Logger log = LoggerFactory.getLogger(SupplierDaoImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(SupplierDaoImpl.class);
 
 	@Autowired 
 	private SessionFactory sessionFactory;
@@ -35,7 +35,7 @@ public class SupplierDaoImpl implements SupplierDao {
 
 	public boolean update(Supplier supplier) 
 	{
-		/*if (supplier.getSid()==null)
+		/*if (supplier.getid()==null)
 			return false;*/
 		try {
 			sessionFactory.getCurrentSession().update(supplier);

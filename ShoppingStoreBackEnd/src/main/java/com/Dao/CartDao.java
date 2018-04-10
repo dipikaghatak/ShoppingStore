@@ -15,6 +15,7 @@ public interface CartDao {
 	
 	public boolean update(Cart cart);
 	
+	public boolean update(String emailID);
 
 	
 	public Cart get(String id);

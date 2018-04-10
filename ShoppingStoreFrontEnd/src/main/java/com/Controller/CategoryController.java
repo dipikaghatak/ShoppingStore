@@ -23,7 +23,7 @@ import com.domain.Category;
 @Controller
 public class CategoryController {
 	@Autowired
-	private CategoryDao categoryDao;
+	private CategoryDao categorydao;
 	
 	@Autowired
 	private Category category;
@@ -55,7 +55,7 @@ public class CategoryController {
 		category.setName(name);
 		category.setDescription(description);
 		
-		if(categoryDao.save(category))
+		if(categorydao.save(category))
 		{
 			
 			mv.addObject("CategorySuccessMessage", "The category saved successfully");
@@ -82,7 +82,7 @@ public class CategoryController {
 	
 				ModelAndView mv = new ModelAndView("home");
 		
-		if(categoryDao.update(category)==true) 
+		if(categorydao.update(category)==true) 
 		{
 			
 			mv.addObject("successMessage", "The catgory updated successfully");
@@ -96,13 +96,13 @@ public class CategoryController {
 	}
 	
 	@GetMapping(name="/category/delete")
-	public ModelAndView deleteCategory(@RequestParam String Cid) {
-	System.out.println("going to delete category : " + Cid);
+	public ModelAndView deleteCategory(@RequestParam String id) {
+	System.out.println("going to delete category : " + id);
 	
 	{
 		ModelAndView mv = new ModelAndView("rediret:/managecategories");
 	
-		if( categoryDao.delete(Cid)== true)
+		if( categorydao.delete(id)== true)
 		{
 		
 			mv.addObject("successMessage", "The catgory deleted successfully");
@@ -118,12 +118,12 @@ public class CategoryController {
 		
 	}
 	@GetMapping("/category/edit")
-	public ModelAndView editCategory(@RequestParam String Cid)
+	public ModelAndView editCategory(@RequestParam String id)
 	{
 		ModelAndView mv = new ModelAndView("rediret:/managecategories");
-		category=categoryDao.get(Cid);
+		category=categorydao.get(id);
 		
-		mv.addObject("selectedCategory", category);
+		//mv.addObject("selectedCategory", category);
 		httpsession.setAttribute("selectedCategory", category);
 		return mv;
 		
@@ -135,7 +135,7 @@ public class CategoryController {
 	public ModelAndView getAllCategories()
 	{
 		ModelAndView mv = new ModelAndView("home");
-		List<Category> categories = categoryDao.list();
+		List<Category> categories = categorydao.list();
 		return mv.addObject("categories", categories);
 		
 	}

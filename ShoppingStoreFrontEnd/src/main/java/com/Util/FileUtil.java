@@ -11,8 +11,9 @@ import org.springframework.web.multipart.MultipartFile;
 public class FileUtil {
 	private static final Logger logger = LoggerFactory
 			.getLogger(FileUtil.class);
-	private static final String imageDirectory = "ShoppingStoreImages";
-	private static String rootPath = System.getProperty("catalina.home");
+	/*private static final String imageDirectory = "ShoppingStoreImages";
+	private static String rootPath = System.getProperty("catalina.home");*/
+	/*private static String rootPath ="D:\\dipika workspace\\Shopping store\\ShoppingStoreFrontEnd\\src\\main\\webapp\\resources\\images";*/
 	/*public static boolean  copyfile(MultipartFile file, String fileName)
 	{
 		if (!file.isEmpty()) {
@@ -46,14 +47,15 @@ public class FileUtil {
 	
 		
 	}*/
+	 private static String rootPath = System.getProperty("user.dir");
 	public static boolean fileCopyNIO(MultipartFile file, String fileName) {
-		File dest = new  File(rootPath + File.separator + imageDirectory + File.separator + fileName);
-	
+		File dest = new  File(rootPath + File.separator  + fileName);
+		System.out.println("where it is uploading ??"+ dest.getAbsolutePath());
 		try {
 			file.transferTo(dest);
 			return true;
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 		return false;

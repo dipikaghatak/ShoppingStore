@@ -13,16 +13,11 @@ import org.springframework.stereotype.Repository;
 import com.Dao.ProductDao;
 import com.domain.Product;
 
-
-
-
-
-
 @Transactional
 @Repository("productdao") 
 public class ProductDaoImpl implements ProductDao {
 
-	Logger log = LoggerFactory.getLogger(ProductDaoImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(ProductDaoImpl.class);
 	@Autowired 
 	private SessionFactory sessionFactory;
 	@Autowired
@@ -36,7 +31,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	public boolean update(Product product) 
 	{
-		/*if (product.getPid()==null)
+		/*if (product.getid()==null)
 			return false;*/
 		try {
 			sessionFactory.getCurrentSession().update(product);
@@ -81,6 +76,12 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> list() {
 		return sessionFactory.getCurrentSession().createQuery("from Product").list();
 		
+	}
+
+	@Override
+	public List<Product> search(String searchString) {
+		String hql = "from Product where description like '%"+ searchString + "%'";
+		return sessionFactory.getCurrentSession().createQuery(hql).list();
 	}
 	
 }

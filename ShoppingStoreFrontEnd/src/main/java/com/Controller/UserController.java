@@ -1,5 +1,7 @@
 package com.Controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Dao.CartDao;
 import com.Dao.UserDao;
+import com.domain.Cart;
 import com.domain.User;
 
 @Controller
@@ -18,11 +22,18 @@ public class UserController {
 	private UserDao userdao;
 	@Autowired
 	private User user;
+	@Autowired
+	private CartDao cartdao;
+	@Autowired
+	private Cart cart;
 
 	@Autowired
 	HttpSession httpsession;
 	
-	
+	//wil send user id & passwod from jsp to controller
+	//it should validate the credentials
+	//it should return username--------valid credentials
+	//it should return error message
 	@PostMapping("validate")
 	public ModelAndView validate(@RequestParam("uname") String username, @RequestParam("psw") String password)
 	{
@@ -41,6 +52,11 @@ public class UserController {
 			//mv.addObject("welcomeMessage","Welcome Mr/Ms:"+ user.getName());
 			httpsession.setAttribute("welcomeMessage", "Welcome Mr./Ms " + user.getName());
 			httpsession.setAttribute("loggedInUserId", user.getEmailD());
+			httpsession.setAttribute("isLoggedIn", true);
+			List <Cart> carts = cartdao.list(user.getEmailD());
+			httpsession.setAttribute("size", carts.size());
+			httpsession.setAttribute("carts", carts.size());
+			httpsession.setAttribute("carts", carts);
 			if(user.getRole()=='A')
 			{
 				httpsession.setAttribute("isAdmin", true);

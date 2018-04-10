@@ -40,10 +40,10 @@ public class UserDaoTest
 	public void saveUserTestCase()
 	{
 		user = new User();
-		user.setEmailID("arijit@gmail.com");
-		user.setMobile("9999999");
-		user.setName("arijit acharya");
-		user.setPwd("ariit@123");
+		user.setEmailID("rupsa@gmail.com");
+		user.setMobile("555555");
+		user.setName("Rupsa Chowdhury");
+		user.setPwd("rupsa@123");
 		
 	  boolean status = 	userdao.save(user);
 	  
@@ -54,6 +54,7 @@ public class UserDaoTest
 	@Test
 	public void updateUserTestCase()
 	{
+		user= new User();
 		user.setEmailID("jaskaran@gmail.com");
 		user.setMobile("888888");
 		boolean status = userdao.update(user);

@@ -23,7 +23,7 @@ import com.domain.Supplier;
 @Controller
 public class SupplierController {
 	@Autowired
-	private SupplierDao supplierDao;
+	private SupplierDao supplierdao;
 	
 	@Autowired
 	private Supplier supplier;
@@ -54,15 +54,15 @@ public class SupplierController {
 				supplier.setId(id);
 				supplier.setName(name);
 				supplier.setAddress(address);
-		if(supplierDao.save(supplier))
+		if(supplierdao.save(supplier))
 		{
 			
-			mv.addObject("successMessage", "The Supplier saved successfully");
+			mv.addObject("suppliersuccessMessage", "The Supplier saved successfully");
 		}
 		else
 		{
 			
-			mv.addObject("errorMessage", "could not save the Supplier");
+			mv.addObject("suppliererrorMessage", "could not save the Supplier");
 		}
 		return mv;
 	}
@@ -75,7 +75,7 @@ public ModelAndView updateSupplier(@ModelAttribute Supplier supplier)
 	
 			ModelAndView mv = new ModelAndView("home");
 
-	if(supplierDao.update(supplier)==true)
+	if(supplierdao.update(supplier)==true)
 	{
 	
 		mv.addObject("successMessage", "The supplier updated successfully");
@@ -94,7 +94,7 @@ public ModelAndView deleteSupplier(@RequestParam String id)
 {
 	ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 	
-	if( supplierDao.delete(id)== true)
+	if( supplierdao.delete(id)== true)
 	{
 		
 		mv.addObject("SuppliersuccessMessage", "The supplier deleted successfully");
@@ -113,7 +113,7 @@ public ModelAndView deleteSupplier(@RequestParam String id)
 public ModelAndView editSupplier(@RequestParam String id) {
 	ModelAndView mv = new ModelAndView("redirect:/managesuppliers");
 	
-	supplier = supplierDao.get(id);
+	supplier = supplierdao.get(id);
 	
 	httpsession.setAttribute("selectedSupplier", supplier);
 
@@ -123,7 +123,7 @@ public ModelAndView editSupplier(@RequestParam String id) {
 public ModelAndView getAllSuppliers()
 {
 	ModelAndView mv = new ModelAndView("home");
-	List<Supplier> suppliers = supplierDao.list();
+	List<Supplier> suppliers = supplierdao.list();
 	return mv.addObject("suppliers", suppliers);
 	
 }

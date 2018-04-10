@@ -25,4 +25,6 @@ public interface ProductDao {
 	
 	public List<Product> list();
 	
+	public List<Product> search(String searchString);
+	
 }

@@ -18,7 +18,7 @@ import com.domain.Category;
 @Repository("categorydao") 
 public class CategoryDaoImpl implements CategoryDao {
 	
-	private static final Logger log = LoggerFactory.getLogger(UserDaoImpl.class);
+	private static final Logger log = LoggerFactory.getLogger(CategoryDaoImpl.class);
 	@Autowired
 	
 	private SessionFactory sessionFactory;
