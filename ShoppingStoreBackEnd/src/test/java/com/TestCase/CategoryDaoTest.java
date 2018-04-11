@@ -31,10 +31,10 @@ public class CategoryDaoTest {
 	public void saveCategoryTestCase()
 	{
 		category = new Category();
-		category.setId("Lenovo K5");
+		category.setId("Books-001");
 		
-		category.setName("Mobile");
-		category.setDescription("This is Mobile category");
+		category.setName("Books");
+		category.setDescription("This is Books category");
 		
 	  boolean status = 	( categorydao.save(category));
 	  

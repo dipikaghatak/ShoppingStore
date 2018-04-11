@@ -19,7 +19,7 @@ public class ProductDaoTest {
 	{
 		context = new AnnotationConfigApplicationContext();
 		
-		context.scan("com.niit"); 
+		context.scan("com.*"); 
 		
 		context.refresh();
 		
@@ -30,10 +30,10 @@ public class ProductDaoTest {
 	public void saveProductTestCase()
 	{
 		product = new Product();
-		product.setId("Mob-002");
+		product.setId("Men-001");
 		
-		product.setName("Lenovo");
-		product.setDescription("This is mobile category");
+		product.setName("T-Shirts");
+		product.setDescription("This is T-Shirts category");
 		
 	  boolean status = 	( productdao.save(product));
 	  

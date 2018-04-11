@@ -6,8 +6,9 @@ import java.io.FileOutputStream;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
-
+@Component
 public class FileUtil {
 	private static final Logger logger = LoggerFactory
 			.getLogger(FileUtil.class);
