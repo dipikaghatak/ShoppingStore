@@ -24,8 +24,16 @@ public class ProductDaoImpl implements ProductDao {
 	private Product product;
 	public boolean save(Product product) 
 	{
-		return false;
-	
+		log.debug("starting of the save method");
+		try{
+
+			sessionFactory.getCurrentSession().saveOrUpdate(product);
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 		
 	}
 

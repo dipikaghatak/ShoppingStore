@@ -42,8 +42,8 @@
 
 
 			<tr>
-				<td>Select Category</td>
-				<td><select name="categoryID">
+				<td>Select Category ID</td>
+				<td><select name="categoryId">
 						<c:forEach var="category" items="${categories}">
 
 							<option value="${category.id}">${category.name}</option>

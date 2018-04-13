@@ -16,13 +16,13 @@
 	</h2>
 	<br>
 	
-	<c:if test="${isAdminClickedCategories==true }">
+	<c:if test="${isAdminClickedManageCategories==true }">
 		<jsp:include page="category.jsp"></jsp:include>
 	</c:if>
-	<c:if test="${isAdminClickedSuppliers==true }">
+	<c:if test="${isAdminClickedManageSuppliers==true }">
 		<jsp:include page="supplier.jsp"></jsp:include>
 	</c:if>
-	<c:if test="${isAdminClickedProducts==true }">
+	<c:if test="${isAdminClickedManageProducts==true }">
 		<jsp:include page="product.jsp"></jsp:include>
 	</c:if>
 </body>

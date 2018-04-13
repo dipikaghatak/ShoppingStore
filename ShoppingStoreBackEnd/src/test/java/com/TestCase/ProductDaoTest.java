@@ -30,10 +30,14 @@ public class ProductDaoTest {
 	public void saveProductTestCase()
 	{
 		product = new Product();
-		product.setId("Men-001");
+		product.setId("Men-002");
 		
-		product.setName("T-Shirts");
-		product.setDescription("This is T-Shirts category");
+		product.setName("Shirts");
+		product.setDescription("This is Shirts category");
+		product.setCategoryId("Men-001");
+		product.setSupplierID("SUP-001");
+		product.setPrice(5000);
+		
 		
 	  boolean status = 	( productdao.save(product));
 	  
@@ -72,7 +76,7 @@ public class ProductDaoTest {
 	@Test
 	public void deleteProductSuccessTestCase()
 	{
-	boolean status =	 productdao.delete("Mob-001");
+	boolean status =	 productdao.delete("Men-001");
 	assertEquals("delete product success test case" , true, status);
 	
 	}

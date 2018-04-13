@@ -28,7 +28,16 @@ public class SupplierDaoImpl implements SupplierDao {
 	private Supplier supplier;
 	public boolean save(Supplier supplier) 
 	{
-		return false;
+		log.debug("starting of the save method");
+		try{
+
+			sessionFactory.getCurrentSession().saveOrUpdate(supplier);
+			return true;
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
 	
 		
 	}

@@ -95,8 +95,8 @@ public class ProductController {
 			@RequestParam("name") String name,
 			@RequestParam("description") String description,
 			@RequestParam("price") String price,
-			@RequestParam("categoryID") String categoryID,
-			@RequestParam("supplierID") String supplierID,
+			@RequestParam("categoryId") String categoryId,
+			@RequestParam("supplierId") String supplierId,
 			@RequestParam("file") MultipartFile file
 			
 			) {
@@ -107,10 +107,10 @@ public class ProductController {
 		product.setDescription(description);
 		price = price.replace(",","");
 		product.setPrice(Integer.parseInt(price));
-		//product.setCategory(categoryDAO.get(categoryID));
-		//product.setSupplier(supplierDAO.get(supplierID));
-		product.setCategoryId(categoryID);
-		product.setSupplierID(supplierID);
+		//product.setCategory(categoryDAO.get(categoryId));
+		//product.setSupplier(supplierDAO.get(supplierId));
+		product.setCategoryId(categoryId);
+		product.setSupplierID(supplierId);
 		if (productdao.save(product)) {
 			mv.addObject("productSuccessMessage", "The product created successfully");
 			// call upload image method
@@ -147,7 +147,7 @@ public class ProductController {
 
 	}
 
-	@GetMapping("/product/delete")
+	@GetMapping("product/delete")
 	public ModelAndView deleteProduct(@RequestParam String id) {
 		System.out.println("going to delete product : " + id);
 		// navigate to home page

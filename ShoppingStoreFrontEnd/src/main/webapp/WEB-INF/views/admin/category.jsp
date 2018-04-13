@@ -41,7 +41,7 @@ ${categorySuccessMessage} ${categoryErrorMessage}
 	<!--  display all the categories -->
 
 	<div>
-		<table border="5" bgcolor="cyan">
+		<table border="5" backgroundcolor="cyan">
 			<tr>
 				<td>Category ID</td>
 				<td>Category Name</td>

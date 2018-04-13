@@ -77,7 +77,7 @@ public class CategoryController {
 	@PutMapping("/category/update")
 	
 	
-	public ModelAndView updateCategory(@ModelAttribute Category cateory)
+	public ModelAndView updateCategory(@ModelAttribute Category category)
 	{
 	
 				ModelAndView mv = new ModelAndView("home");

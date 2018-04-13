@@ -30,10 +30,10 @@ public class SupplierDaoTest {
 	public void saveSupplierTestCase()
 	{
 		supplier = new Supplier();
-		supplier.setId("SUP-001");
+		supplier.setId("SUP-002");
 		
-		supplier.setName("BlueDart");
-		supplier.setAddress("NH33, Chennai");
+		supplier.setName("ICI Global");
+		supplier.setAddress("Warli, Mumbai");
 		
 	  boolean status = 	supplierdao.save(supplier);
 	  
@@ -45,10 +45,10 @@ public class SupplierDaoTest {
 	public void updateSupplierTestCase()
 	{
 		supplier = new Supplier();
-		supplier.setId("SUP-001");
+		supplier.setId("SUP-002");
 		
-		supplier.setName("BigC");
-		supplier.setAddress("Warli, Mumbai");
+		supplier.setName("ICI Global");
+		supplier.setAddress("Chennai");
 		
 		boolean status = supplierdao.update(supplier);
 		assertEquals("update test case", true,status );
